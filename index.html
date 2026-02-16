@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StoreCraft — AI-Powered Restaurant Management</title>
+    <meta name="description" content="StoreCraft gives restaurant chains one dashboard to track sales, staffing, inventory, and customer feedback across every location. Free for early design partners.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0C0C0E;
+            --bg-card: #131316;
+            --bg-card-hover: #1A1A1F;
+            --border: #1E1E24;
+            --text: #E8E8EC;
+            --text-muted: #8A8A96;
+            --text-dim: #5A5A66;
+            --accent: #E8913A;
+            --accent-glow: #E8913A22;
+            --accent-soft: #E8913A15;
+            --green: #5AE87A;
+            --white: #FAFAFA;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+        }
+        .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+        .wide-container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+        nav { padding: 24px 0; display: flex; align-items: center; justify-content: space-between; }
+        .logo { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--white); text-decoration: none; letter-spacing: -0.02em; }
+        .logo span { color: var(--accent); }
+        .nav-links { display: flex; align-items: center; gap: 24px; }
+        .nav-link { font-size: 14px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+        .nav-link:hover { color: var(--text); }
+        .nav-cta { padding: 10px 20px; background: var(--accent); color: var(--bg); font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; border: none; border-radius: 8px; cursor: pointer; text-decoration: none; transition: all 0.2s; }
+        .nav-cta:hover { background: #D4802F; }
+
+        .hero { padding: 80px 0 48px; text-align: center; }
+        .badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; background: var(--accent-soft); border: 1px solid var(--accent-glow); border-radius: 100px; font-size: 13px; font-weight: 500; color: var(--accent); margin-bottom: 28px; animation: fadeUp 0.6s ease both; }
+        .badge::before { content: ''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: pulse 2s ease infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+        .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(36px, 5.5vw, 64px); font-weight: 400; line-height: 1.1; letter-spacing: -0.03em; color: var(--white); margin-bottom: 20px; animation: fadeUp 0.6s ease 0.1s both; }
+        .hero h1 em { font-style: italic; color: var(--accent); }
+        .hero-sub { font-size: 18px; color: var(--text-muted); max-width: 580px; margin: 0 auto 36px; line-height: 1.7; animation: fadeUp 0.6s ease 0.2s both; }
+        .hero-cta-group { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; animation: fadeUp 0.6s ease 0.3s both; }
+        .btn-primary { padding: 16px 36px; background: var(--accent); color: var(--bg); font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 600; border: none; border-radius: 10px; cursor: pointer; text-decoration: none; transition: all 0.2s; }
+        .btn-primary:hover { background: #D4802F; transform: translateY(-1px); }
+        .btn-secondary { padding: 16px 36px; background: transparent; border: 1px solid var(--border); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 500; border-radius: 10px; cursor: pointer; text-decoration: none; transition: all 0.2s; }
+        .btn-secondary:hover { border-color: var(--text-muted); }
+
+        .hero-screenshot { margin-top: 56px; animation: fadeUp 0.8s ease 0.4s both; }
+        .hero-screenshot img { width: 100%; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.03); }
+
+        .proof-bar { padding: 28px 0; text-align: center; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .proof-bar p { font-size: 14px; color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase; font-weight: 500; }
+        .proof-bar span { color: var(--text-muted); }
+
+        .section-label { font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 16px; }
+        .section-title { font-family: 'DM Serif Display', serif; font-size: clamp(28px, 4vw, 40px); font-weight: 400; line-height: 1.2; letter-spacing: -0.02em; color: var(--white); margin-bottom: 16px; }
+        .section-desc { font-size: 17px; color: var(--text-muted); max-width: 600px; line-height: 1.7; margin-bottom: 48px; }
+
+        .problem { padding: 100px 0 80px; }
+        .problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        .problem-card { padding: 28px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; transition: all 0.3s; }
+        .problem-card:hover { background: var(--bg-card-hover); border-color: #2A2A32; }
+        .problem-card .icon { font-size: 28px; margin-bottom: 16px; }
+        .problem-card h3 { font-size: 17px; font-weight: 600; color: var(--white); margin-bottom: 8px; }
+        .problem-card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+        .features { padding: 80px 0; border-top: 1px solid var(--border); }
+        .feature-row { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-bottom: 80px; }
+        .feature-row:last-child { margin-bottom: 0; }
+        .feature-row.reverse .feature-text { order: 2; }
+        .feature-row.reverse .feature-img { order: 1; }
+        .feature-text h3 { font-family: 'DM Serif Display', serif; font-size: 28px; color: var(--white); margin-bottom: 12px; letter-spacing: -0.02em; }
+        .feature-text p { font-size: 15px; color: var(--text-muted); line-height: 1.75; margin-bottom: 16px; }
+        .feature-tag { display: inline-block; padding: 5px 14px; background: var(--accent-soft); color: var(--accent); font-size: 12px; font-weight: 600; border-radius: 100px; }
+        .feature-img img { width: 100%; border-radius: 10px; border: 1px solid var(--border); box-shadow: 0 16px 48px rgba(0,0,0,0.35); }
+
+        .how { padding: 100px 0; border-top: 1px solid var(--border); }
+        .steps { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 48px; }
+        .step { padding: 36px 32px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; }
+        .step-number { font-family: 'DM Serif Display', serif; font-size: 48px; color: var(--accent); opacity: 0.2; line-height: 1; margin-bottom: 16px; }
+        .step h3 { font-size: 20px; font-weight: 600; color: var(--white); margin-bottom: 10px; }
+        .step p { font-size: 15px; color: var(--text-muted); line-height: 1.7; }
+        .step-tag { display: inline-block; margin-top: 16px; padding: 5px 14px; background: #101A13; border: 1px solid #1A3020; color: var(--green); font-size: 13px; font-weight: 600; border-radius: 100px; }
+
+        .offer { padding: 100px 0; border-top: 1px solid var(--border); }
+        .offer-box { background: linear-gradient(135deg, var(--accent-soft), var(--bg-card)); border: 1px solid var(--accent-glow); border-radius: 16px; padding: 56px 48px; text-align: center; max-width: 720px; margin: 0 auto; }
+        .offer-box h2 { font-family: 'DM Serif Display', serif; font-size: clamp(28px, 4vw, 38px); color: var(--white); margin-bottom: 16px; letter-spacing: -0.02em; }
+        .offer-box > p { font-size: 16px; color: var(--text-muted); max-width: 480px; margin: 0 auto 32px; line-height: 1.7; }
+        .offer-details { display: flex; gap: 28px; justify-content: center; flex-wrap: wrap; margin-bottom: 36px; }
+        .offer-detail { display: flex; align-items: center; gap: 10px; font-size: 15px; color: var(--text); }
+        .offer-detail .check { width: 22px; height: 22px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--bg); font-size: 12px; font-weight: 700; flex-shrink: 0; }
+        .form-inline { display: flex; gap: 10px; max-width: 480px; margin: 0 auto; flex-wrap: wrap; justify-content: center; }
+        .form-inline input { flex: 1; min-width: 200px; padding: 14px 18px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 15px; outline: none; transition: border-color 0.2s; }
+        .form-inline input::placeholder { color: var(--text-dim); }
+        .form-inline input:focus { border-color: var(--accent); }
+        .form-inline button { padding: 14px 28px; background: var(--accent); color: var(--bg); font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600; border: none; border-radius: 8px; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+        .form-inline button:hover { background: #D4802F; }
+        .form-note { font-size: 12px; color: var(--text-dim); margin-top: 12px; }
+        #form-success { display: none; margin-top: 16px; padding: 12px 20px; background: #101A13; border: 1px solid #1A3020; border-radius: 8px; color: var(--green); font-size: 14px; }
+
+        footer { padding: 48px 0; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+        footer p { font-size: 13px; color: var(--text-dim); }
+        footer a { color: var(--text-muted); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+        footer a:hover { color: var(--accent); }
+
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .reveal { opacity: 0; transform: translateY(24px); transition: all 0.6s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            .hero { padding: 56px 0 36px; }
+            .hero-sub { font-size: 16px; }
+            .problem, .features, .how, .offer { padding: 64px 0; }
+            .problem-grid { grid-template-columns: 1fr; }
+            .feature-row { grid-template-columns: 1fr; gap: 32px; }
+            .feature-row.reverse .feature-text { order: 1; }
+            .feature-row.reverse .feature-img { order: 2; }
+            .steps { grid-template-columns: 1fr; }
+            .offer-box { padding: 40px 24px; }
+            .nav-link { display: none; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <nav>
+        <a href="#" class="logo">Store<span>Craft</span></a>
+        <div class="nav-links">
+            <a href="https://storecraft-restaurant-management-suite-657493482784.us-west1.run.app/" target="_blank" class="nav-link">See Demo</a>
+            <a href="#offer" class="nav-cta">Become a Design Partner — Free</a>
+        </div>
+    </nav>
+    <section class="hero">
+        <div class="badge">Looking for 10 design partners — free access</div>
+        <h1>One dashboard for your<br>entire restaurant <em>chain.</em></h1>
+        <p class="hero-sub">Sales, staffing, inventory, and customer feedback — all in one place, across every location. Built for restaurant owners who'd rather grow than drown in spreadsheets.</p>
+        <div class="hero-cta-group">
+            <a href="#offer" class="btn-primary">Become a Design Partner — It's Free</a>
+            <a href="https://storecraft-restaurant-management-suite-657493482784.us-west1.run.app/" target="_blank" class="btn-secondary">See How It Works</a>
+        </div>
+    </section>
+</div>
+<div class="wide-container">
+    <div class="hero-screenshot">
+        <img src="img-overview.png" alt="StoreCraft Manager Hub — Overview Dashboard">
+    </div>
+</div>
+<div class="container">
+    <div class="proof-bar">
+        <p>Currently piloting with <span>the fastest growing breakfast chain in Canada</span></p>
+    </div>
+    <section class="problem reveal">
+        <div class="section-label">The Problem</div>
+        <h2 class="section-title">Running 3+ locations shouldn't<br>mean 3x the headaches.</h2>
+        <p class="section-desc">You opened more locations to grow. But now you're buried in spreadsheets, juggling schedules, guessing on inventory, and can't see what's really happening at each spot.</p>
+        <div class="problem-grid">
+            <div class="problem-card">
+                <div class="icon">⏱️</div>
+                <h3>Labor costs eating your margins</h3>
+                <p>Overstaffed on slow nights, overtime you didn't approve, schedules that don't match what's actually happening on the floor. You're paying for hours that don't produce.</p>
+            </div>
+            <div class="problem-card">
+                <div class="icon">📦</div>
+                <h3>Inventory is a guessing game</h3>
+                <p>Over-ordering at one location, running out at another. You're wasting food and money because there's no easy way to see what's moving and what's sitting.</p>
+            </div>
+            <div class="problem-card">
+                <div class="icon">📈</div>
+                <h3>You want to grow, not babysit</h3>
+                <p>You should be focused on opening your next location and building revenue — not chasing down why location #3 had a bad week. Let the dashboard sweat the small stuff.</p>
+            </div>
+        </div>
+    </section>
+    <section class="features reveal" id="features">
+        <div class="section-label">What You Get</div>
+        <h2 class="section-title">Everything you need to run your<br>chain — in one screen.</h2>
+        <p class="section-desc">StoreCraft connects to your POS, payroll, and ordering systems and turns messy data into clear answers.</p>
+        <div class="feature-row">
+            <div class="feature-text">
+                <h3>Sales across every location</h3>
+                <p>See total revenue, orders, and average order value at a glance. Compare locations side by side. Spot which spot is crushing it and which one needs attention — without calling anyone.</p>
+                <p>AI-powered suggestions tell you exactly what to do: run a promo at underperformers, push what's working at your top spot to the others.</p>
+                <div class="feature-tag">Sales Hub</div>
+            </div>
+            <div class="feature-img">
+                <img src="img-sales.png" alt="StoreCraft Sales Hub">
+            </div>
+        </div>
+        <div class="feature-row reverse">
+            <div class="feature-text">
+                <h3>Staffing that actually makes sense</h3>
+                <p>Weekly schedules, shift tracking, labor cost projections, and time-off management — all in one view. See exactly what you're spending on labor this week and whether it lines up with revenue.</p>
+                <p>Upload your payroll exports and get audit-ready timesheets automatically. No more manual reconciliation.</p>
+                <div class="feature-tag">Staffing Hub</div>
+            </div>
+            <div class="feature-img">
+                <img src="img-staffing.png" alt="StoreCraft Staffing Hub">
+            </div>
+        </div>
+        <div class="feature-row">
+            <div class="feature-text">
+                <h3>Know what's selling and what's wasting</h3>
+                <p>Track every item by location. See what's flying off the shelf and what's sitting there. Get smart ordering tips — like reducing prep on slow mornings or bumping stock before a predicted weekend rush.</p>
+                <p>StoreCraft flags low stock before it becomes a problem and suggests order adjustments based on actual sales data.</p>
+                <div class="feature-tag">Inventory Hub</div>
+            </div>
+            <div class="feature-img">
+                <img src="img-inventory.png" alt="StoreCraft Inventory Hub">
+            </div>
+        </div>
+        <div class="feature-row reverse">
+            <div class="feature-text">
+                <h3>What your customers are really saying</h3>
+                <p>Pull in reviews from Google, Yelp, and your own feedback channels. See your rating, track food quality and service scores, and spot issues before they snowball.</p>
+                <p>AI-generated replies help you respond to reviews faster. 42 reviews in the queue? Handle them in minutes, not hours.</p>
+                <div class="feature-tag">Customer Hub</div>
+            </div>
+            <div class="feature-img">
+                <img src="img-customer.png" alt="StoreCraft Customer Hub">
+            </div>
+        </div>
+        <div class="feature-row">
+            <div class="feature-text">
+                <h3>Just ask. StoreCraft Copilot answers.</h3>
+                <p>Don't dig through tabs. Just ask: "Which location had the most sales this month?" or "What are customers complaining about?" Copilot pulls from your live data and gives you a straight answer.</p>
+                <p>It's like having a data analyst on call 24/7 — except it already knows your entire business.</p>
+                <div class="feature-tag">AI Copilot</div>
+            </div>
+            <div class="feature-img">
+                <img src="img-copilot.png" alt="StoreCraft Copilot">
+            </div>
+        </div>
+    </section>
+    <section class="how reveal" id="how">
+        <div class="section-label">How It Works</div>
+        <h2 class="section-title">From first call to live dashboard<br>in days, not months.</h2>
+        <p class="section-desc">We're looking for 10 design partners to use StoreCraft for free and help us make it even better.</p>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">01</div>
+                <h3>Free Audit</h3>
+                <p>We look at how your restaurant chain operates today — your POS data, staffing, inventory, customer reviews. We show you exactly what StoreCraft can do with your actual numbers. No cost, no commitment.</p>
+                <span class="step-tag">✓ Completely free</span>
+            </div>
+            <div class="step">
+                <div class="step-number">02</div>
+                <h3>3 Months Free as a Design Partner</h3>
+                <p>If you like what you see, you get full access to StoreCraft for 3 months — free. You help us make it better by sharing feedback, and we give you a tool that actually works for your business.</p>
+                <span class="step-tag">✓ Free for design partners</span>
+            </div>
+        </div>
+    </section>
+    <section class="offer reveal" id="offer">
+        <div class="offer-box">
+            <h2>Become a design partner.</h2>
+            <p>We're looking for 10 restaurant chains to use StoreCraft for free. You get a live dashboard for your entire operation. We get your honest feedback to make it better.</p>
+            <div class="offer-details">
+                <div class="offer-detail"><div class="check">✓</div>Free operations audit</div>
+                <div class="offer-detail"><div class="check">✓</div>3 months full access</div>
+                <div class="offer-detail"><div class="check">✓</div>No credit card, no catch</div>
+            </div>
+            <div class="form-inline" id="contact-form">
+                <input type="email" id="email-input" placeholder="Your email" required>
+                <button onclick="handleSubmit()">Get Started — Free</button>
+            </div>
+            <p class="form-note">We'll reach out within 24 hours to schedule your audit.</p>
+            <div id="form-success">Thank you! We'll be in touch within 24 hours.</div>
+        </div>
+    </section>
+</div>
+<div class="container">
+    <footer>
+        <p>&copy; 2026 StoreCraft</p>
+        <a href="mailto:hello@storecraft.ai">hello@storecraft.ai</a>
+    </footer>
+</div>
+<script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+
+    function handleSubmit() {
+        const email = document.getElementById('email-input').value;
+        if (!email || !email.includes('@')) {
+            document.getElementById('email-input').style.borderColor = '#E85A5A';
+            return;
+        }
+        // TODO: Replace with Formspree — fetch('https://formspree.io/f/YOUR_ID', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({email}) });
+        document.getElementById('contact-form').style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+        window.location.href = 'mailto:hello@storecraft.ai?subject=Design Partner Application&body=Hi, I\'d like to become a StoreCraft design partner. My email is ' + email;
+    }
+    document.getElementById('email-input').addEventListener('keypress', function(e) { if (e.key === 'Enter') handleSubmit(); });
+</script>
+</body>
+</html>
