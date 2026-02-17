@@ -318,10 +318,16 @@
 <div class="container">
     <footer>
         <p>&copy; 2026 StoreCraft</p>
-        <a href="/cdn-cgi/l/email-protection#fc9d9895bc888e858f88938e999f8e9d9a88d29f9391"><span class="__cf_email__" data-cfemail="b7d6d3def7c3c5cec4c3d8c5d2d4c5d6d1c399d4d8da">[email&#160;protected]</span></a>
+        <a href="mailto:adi@trystorecraft.com">adi@trystorecraft.com</a>
     </footer>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
     const reveals = document.querySelectorAll('.reveal');
-    const observer = 
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
