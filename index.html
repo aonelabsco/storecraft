@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StoreCraft — AI-Powered Restaurant Management</title>
-    <meta name="description" content="StoreCraft gives restaurant chains one dashboard to track sales, staffing, inventory, and customer feedback across every location. Free for early design partners.">
+    <meta name="description" content="StoreCraft helps restaurant chains cut staff and inventory costs while spotting growth opportunities. Free for early design partners.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
@@ -25,26 +25,14 @@
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body {
-            font-family: 'DM Sans', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-            pointer-events: none;
-            z-index: 0;
-        }
+        body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+        body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; }
         .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
         .wide-container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
 
+        /* NAV */
         nav { padding: 24px 0; display: flex; align-items: center; justify-content: space-between; }
-        .logo { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--white); text-decoration: none; letter-spacing: -0.02em; }
+        .logo { font-family: 'DM Serif Display', serif; font-size: 30px; color: var(--white); text-decoration: none; letter-spacing: -0.02em; }
         .logo span { color: var(--accent); }
         .nav-links { display: flex; align-items: center; gap: 24px; }
         .nav-link { font-size: 14px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
@@ -52,13 +40,16 @@
         .nav-cta { padding: 10px 20px; background: var(--accent); color: var(--bg); font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; border: none; border-radius: 8px; cursor: pointer; text-decoration: none; transition: all 0.2s; }
         .nav-cta:hover { background: #D4802F; }
 
+        /* HERO */
         .hero { padding: 80px 0 48px; text-align: center; }
-        .badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; background: var(--accent-soft); border: 1px solid var(--accent-glow); border-radius: 100px; font-size: 13px; font-weight: 500; color: var(--accent); margin-bottom: 28px; animation: fadeUp 0.6s ease both; }
-        .badge::before { content: ''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: pulse 2s ease infinite; }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+        .badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; background: #E85A6F12; border: 1px solid #E85A6F22; border-radius: 100px; font-size: 13px; font-weight: 600; color: #E85A6F; margin-bottom: 28px; animation: fadeUp 0.6s ease both; }
+        .badge::before { content: ''; width: 6px; height: 6px; background: #E85A6F; border-radius: 50%; animation: pulse 1.5s ease infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
         .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(36px, 5.5vw, 64px); font-weight: 400; line-height: 1.1; letter-spacing: -0.03em; color: var(--white); margin-bottom: 20px; animation: fadeUp 0.6s ease 0.1s both; }
         .hero h1 em { font-style: italic; color: var(--accent); }
-        .hero-sub { font-size: 18px; color: var(--text-muted); max-width: 580px; margin: 0 auto 36px; line-height: 1.7; animation: fadeUp 0.6s ease 0.2s both; }
+        .hero-sub { font-size: 18px; color: var(--text-muted); max-width: 600px; margin: 0 auto 20px; line-height: 1.7; animation: fadeUp 0.6s ease 0.2s both; }
+        .hero-proof { font-size: 17px; color: var(--accent); font-weight: 500; margin: 0 auto 36px; animation: fadeUp 0.6s ease 0.25s both; font-style: italic; }
         .hero-cta-group { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; animation: fadeUp 0.6s ease 0.3s both; }
         .btn-primary { padding: 16px 36px; background: var(--accent); color: var(--bg); font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 600; border: none; border-radius: 10px; cursor: pointer; text-decoration: none; transition: all 0.2s; }
         .btn-primary:hover { background: #D4802F; transform: translateY(-1px); }
@@ -72,18 +63,30 @@
         .proof-bar p { font-size: 14px; color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase; font-weight: 500; }
         .proof-bar span { color: var(--text-muted); }
 
+        /* SECTION BASICS */
         .section-label { font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 16px; }
         .section-title { font-family: 'DM Serif Display', serif; font-size: clamp(28px, 4vw, 40px); font-weight: 400; line-height: 1.2; letter-spacing: -0.02em; color: var(--white); margin-bottom: 16px; }
-        .section-desc { font-size: 17px; color: var(--text-muted); max-width: 600px; line-height: 1.7; margin-bottom: 48px; }
+        .section-desc { font-size: 17px; color: var(--text-muted); max-width: 620px; line-height: 1.7; margin-bottom: 48px; }
 
-        .problem { padding: 100px 0 80px; }
-        .problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-        .problem-card { padding: 28px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; transition: all 0.3s; }
-        .problem-card:hover { background: var(--bg-card-hover); border-color: #2A2A32; }
-        .problem-card .icon { font-size: 28px; margin-bottom: 16px; }
-        .problem-card h3 { font-size: 17px; font-weight: 600; color: var(--white); margin-bottom: 8px; }
-        .problem-card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+        /* VALUE PROP — 3 LEVERS */
+        .value { padding: 100px 0 80px; }
+        .value-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        .value-card { padding: 32px 28px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; transition: all 0.3s; }
+        .value-card:hover { background: var(--bg-card-hover); border-color: #2A2A32; }
+        .value-card .icon { font-size: 28px; margin-bottom: 16px; }
+        .value-card h3 { font-size: 17px; font-weight: 600; color: var(--white); margin-bottom: 8px; }
+        .value-card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+        .value-card.highlight { border-color: var(--accent-glow); background: linear-gradient(135deg, var(--accent-soft), var(--bg-card)); }
 
+        /* COPILOT HERO (prominent) */
+        .copilot-section { padding: 80px 0; border-top: 1px solid var(--border); }
+        .copilot-layout { display: grid; grid-template-columns: 1fr 1.1fr; gap: 48px; align-items: center; }
+        .copilot-text h2 { font-family: 'DM Serif Display', serif; font-size: clamp(30px, 4vw, 44px); color: var(--white); margin-bottom: 16px; letter-spacing: -0.02em; line-height: 1.15; }
+        .copilot-text p { font-size: 16px; color: var(--text-muted); line-height: 1.75; margin-bottom: 16px; }
+        .copilot-text .feature-tag { display: inline-block; padding: 5px 14px; background: var(--accent-soft); color: var(--accent); font-size: 12px; font-weight: 600; border-radius: 100px; }
+        .copilot-img img { width: 100%; border-radius: 10px; border: 1px solid var(--border); box-shadow: 0 16px 48px rgba(0,0,0,0.35); }
+
+        /* FEATURES */
         .features { padding: 80px 0; border-top: 1px solid var(--border); }
         .feature-row { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-bottom: 80px; }
         .feature-row:last-child { margin-bottom: 0; }
@@ -94,6 +97,7 @@
         .feature-tag { display: inline-block; padding: 5px 14px; background: var(--accent-soft); color: var(--accent); font-size: 12px; font-weight: 600; border-radius: 100px; }
         .feature-img img { width: 100%; border-radius: 10px; border: 1px solid var(--border); box-shadow: 0 16px 48px rgba(0,0,0,0.35); }
 
+        /* HOW IT WORKS */
         .how { padding: 100px 0; border-top: 1px solid var(--border); }
         .steps { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 48px; }
         .step { padding: 36px 32px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; }
@@ -102,6 +106,7 @@
         .step p { font-size: 15px; color: var(--text-muted); line-height: 1.7; }
         .step-tag { display: inline-block; margin-top: 16px; padding: 5px 14px; background: #101A13; border: 1px solid #1A3020; color: var(--green); font-size: 13px; font-weight: 600; border-radius: 100px; }
 
+        /* OFFER */
         .offer { padding: 100px 0; border-top: 1px solid var(--border); }
         .offer-box { background: linear-gradient(135deg, var(--accent-soft), var(--bg-card)); border: 1px solid var(--accent-glow); border-radius: 16px; padding: 56px 48px; text-align: center; max-width: 720px; margin: 0 auto; }
         .offer-box h2 { font-family: 'DM Serif Display', serif; font-size: clamp(28px, 4vw, 38px); color: var(--white); margin-bottom: 16px; letter-spacing: -0.02em; }
@@ -130,11 +135,12 @@
         @media (max-width: 768px) {
             .hero { padding: 56px 0 36px; }
             .hero-sub { font-size: 16px; }
-            .problem, .features, .how, .offer { padding: 64px 0; }
-            .problem-grid { grid-template-columns: 1fr; }
+            .value, .features, .how, .offer, .copilot-section { padding: 64px 0; }
+            .value-grid { grid-template-columns: 1fr; }
             .feature-row { grid-template-columns: 1fr; gap: 32px; }
             .feature-row.reverse .feature-text { order: 1; }
             .feature-row.reverse .feature-img { order: 2; }
+            .copilot-layout { grid-template-columns: 1fr; gap: 32px; }
             .steps { grid-template-columns: 1fr; }
             .offer-box { padding: 40px 24px; }
             .nav-link { display: none; }
@@ -150,51 +156,73 @@
             <a href="#offer" class="nav-cta">Become a Design Partner — Free</a>
         </div>
     </nav>
+
     <section class="hero">
-        <div class="badge">Looking for 10 design partners — free access</div>
-        <h1>One dashboard for your<br>entire restaurant <em>chain.</em></h1>
-        <p class="hero-sub">Sales, staffing, inventory, and customer feedback — all in one place, across every location. Built for restaurant owners who'd rather grow than drown in spreadsheets.</p>
+        <div class="badge">Only 5 design partner slots — limited availability</div>
+        <h1>Leaving money on the table?<br>Let's fix that and <em>grow your restaurants.</em></h1>
+        <p class="hero-sub">StoreCraft brings your sales, staffing, inventory, and customer data together — so you can cut costs, spot opportunities, and grow without the chaos.</p>
+        <p class="hero-proof">Currently piloting with the fastest growing breakfast chain in Canada</p>
         <div class="hero-cta-group">
             <a href="#offer" class="btn-primary">Become a Design Partner — It's Free</a>
             <a href="https://storecraft-restaurant-management-suite-657493482784.us-west1.run.app/" target="_blank" class="btn-secondary">See How It Works</a>
         </div>
     </section>
 </div>
+
 <div class="wide-container">
     <div class="hero-screenshot">
-        <img src="img-overview.png" alt="StoreCraft Manager Hub — Overview Dashboard">
+        <img src="img-overview.png" alt="StoreCraft Manager Hub — Overview">
     </div>
 </div>
+
 <div class="container">
-    <div class="proof-bar">
-        <p>Currently piloting with <span>the fastest growing breakfast chain in Canada</span></p>
-    </div>
-    <section class="problem reveal">
-        <div class="section-label">The Problem</div>
-        <h2 class="section-title">Running 3+ locations shouldn't<br>mean 3x the headaches.</h2>
-        <p class="section-desc">You opened more locations to grow. But now you're buried in spreadsheets, juggling schedules, guessing on inventory, and can't see what's really happening at each spot.</p>
-        <div class="problem-grid">
-            <div class="problem-card">
+    <!-- VALUE PROP: THE 3 LEVERS -->
+    <section class="value reveal">
+        <div class="section-label">Why StoreCraft</div>
+        <h2 class="section-title">Restaurants have three cost levers.<br>We help you pull two of them.</h2>
+        <p class="section-desc">You can't change rent. But you can cut labor waste and inventory costs — and you can find growth you're leaving on the table. StoreCraft does all three.</p>
+        <div class="value-grid">
+            <div class="value-card">
                 <div class="icon">⏱️</div>
-                <h3>Labor costs eating your margins</h3>
-                <p>Overstaffed on slow nights, overtime you didn't approve, schedules that don't match what's actually happening on the floor. You're paying for hours that don't produce.</p>
+                <h3>Cut staff costs</h3>
+                <p>See exactly where you're overspending on labor — by shift, by day, by location. Stop paying for overtime you didn't approve and hours that don't match revenue.</p>
             </div>
-            <div class="problem-card">
+            <div class="value-card">
                 <div class="icon">📦</div>
-                <h3>Inventory is a guessing game</h3>
-                <p>Over-ordering at one location, running out at another. You're wasting food and money because there's no easy way to see what's moving and what's sitting.</p>
+                <h3>Cut inventory waste</h3>
+                <p>Know what's selling and what's sitting. Get AI-powered ordering suggestions so you stop over-ordering at one location and running out at another.</p>
             </div>
-            <div class="problem-card">
-                <div class="icon">📈</div>
-                <h3>You want to grow, not babysit</h3>
-                <p>You should be focused on opening your next location and building revenue — not chasing down why location #3 had a bad week. Let the dashboard sweat the small stuff.</p>
+            <div class="value-card highlight">
+                <div class="icon">🚀</div>
+                <h3>Grow without the chaos</h3>
+                <p>Our AI spots trends and insights across your locations — like which menu items to push, where to run promos, and what your top location is doing that others aren't. Expand to new locations without new complexity.</p>
             </div>
         </div>
     </section>
+
+    <!-- COPILOT — PROMINENT -->
+    <section class="copilot-section reveal">
+        <div class="copilot-layout">
+            <div class="copilot-text">
+                <div class="section-label">StoreCraft Copilot</div>
+                <h2>Just ask.<br>Get answers instantly.</h2>
+                <p>"Which location had the most sales this month?" "What are customers complaining about?" "Where am I overspending on labor?"</p>
+                <p>StoreCraft Copilot pulls from your live data and gives you a straight answer. No digging through reports. No waiting for someone to run the numbers.</p>
+                <p>It's like having a data analyst who already knows your entire business — on call 24/7.</p>
+                <div class="feature-tag">AI Copilot</div>
+            </div>
+            <div class="copilot-img">
+                <img src="img-copilot-crop.png" alt="StoreCraft Copilot answering questions about sales and customer sentiment">
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES WITH SCREENSHOTS -->
     <section class="features reveal" id="features">
         <div class="section-label">What You Get</div>
-        <h2 class="section-title">Everything you need to run your<br>chain — in one screen.</h2>
+        <h2 class="section-title">Everything you need to run<br>your chain — in one place.</h2>
         <p class="section-desc">StoreCraft connects to your POS, payroll, and ordering systems and turns messy data into clear answers.</p>
+
         <div class="feature-row">
             <div class="feature-text">
                 <h3>Sales across every location</h3>
@@ -203,9 +231,10 @@
                 <div class="feature-tag">Sales Hub</div>
             </div>
             <div class="feature-img">
-                <img src="img-sales.png" alt="StoreCraft Sales Hub">
+                <img src="img-sales-crop.png" alt="StoreCraft Sales Hub">
             </div>
         </div>
+
         <div class="feature-row reverse">
             <div class="feature-text">
                 <h3>Staffing that actually makes sense</h3>
@@ -214,20 +243,22 @@
                 <div class="feature-tag">Staffing Hub</div>
             </div>
             <div class="feature-img">
-                <img src="img-staffing.png" alt="StoreCraft Staffing Hub">
+                <img src="img-staffing-crop.png" alt="StoreCraft Staffing Hub">
             </div>
         </div>
+
         <div class="feature-row">
             <div class="feature-text">
                 <h3>Know what's selling and what's wasting</h3>
-                <p>Track every item by location. See what's flying off the shelf and what's sitting there. Get smart ordering tips — like reducing prep on slow mornings or bumping stock before a predicted weekend rush.</p>
+                <p>Track every item by location. See what's flying off the shelf and what's sitting there. Get smart ordering tips — like reducing prep on slow mornings or bumping stock before a weekend rush.</p>
                 <p>StoreCraft flags low stock before it becomes a problem and suggests order adjustments based on actual sales data.</p>
                 <div class="feature-tag">Inventory Hub</div>
             </div>
             <div class="feature-img">
-                <img src="img-inventory.png" alt="StoreCraft Inventory Hub">
+                <img src="img-inventory-crop.png" alt="StoreCraft Inventory Hub">
             </div>
         </div>
+
         <div class="feature-row reverse">
             <div class="feature-text">
                 <h3>What your customers are really saying</h3>
@@ -236,25 +267,16 @@
                 <div class="feature-tag">Customer Hub</div>
             </div>
             <div class="feature-img">
-                <img src="img-customer.png" alt="StoreCraft Customer Hub">
-            </div>
-        </div>
-        <div class="feature-row">
-            <div class="feature-text">
-                <h3>Just ask. StoreCraft Copilot answers.</h3>
-                <p>Don't dig through tabs. Just ask: "Which location had the most sales this month?" or "What are customers complaining about?" Copilot pulls from your live data and gives you a straight answer.</p>
-                <p>It's like having a data analyst on call 24/7 — except it already knows your entire business.</p>
-                <div class="feature-tag">AI Copilot</div>
-            </div>
-            <div class="feature-img">
-                <img src="img-copilot.png" alt="StoreCraft Copilot">
+                <img src="img-customer-crop.png" alt="StoreCraft Customer Hub">
             </div>
         </div>
     </section>
+
+    <!-- HOW IT WORKS -->
     <section class="how reveal" id="how">
         <div class="section-label">How It Works</div>
-        <h2 class="section-title">From first call to live dashboard<br>in days, not months.</h2>
-        <p class="section-desc">We're looking for 10 design partners to use StoreCraft for free and help us make it even better.</p>
+        <h2 class="section-title">From first call to live system<br>in days, not months.</h2>
+        <p class="section-desc">We're looking for 5 design partners to use StoreCraft for free and help us shape the product.</p>
         <div class="steps">
             <div class="step">
                 <div class="step-number">01</div>
@@ -270,10 +292,12 @@
             </div>
         </div>
     </section>
+
+    <!-- OFFER CTA -->
     <section class="offer reveal" id="offer">
         <div class="offer-box">
             <h2>Become a design partner.</h2>
-            <p>We're looking for 10 restaurant chains to use StoreCraft for free. You get a live dashboard for your entire operation. We get your honest feedback to make it better.</p>
+            <p>5 spots available. You get a fully working system for your entire operation. We get your honest feedback to make it better.</p>
             <div class="offer-details">
                 <div class="offer-detail"><div class="check">✓</div>Free operations audit</div>
                 <div class="offer-detail"><div class="check">✓</div>3 months full access</div>
@@ -288,13 +312,15 @@
         </div>
     </section>
 </div>
+
 <div class="container">
     <footer>
         <p>&copy; 2026 StoreCraft</p>
-        <a href="mailto:hello@storecraft.ai">hello@storecraft.ai</a>
+        <a href="/cdn-cgi/l/email-protection#90f8f5fcfcffd0e3e4ffe2f5f3e2f1f6e4bef1f9"><span class="__cf_email__" data-cfemail="046c6168686b4477706b766167766562702a656d">[email&#160;protected]</span></a>
     </footer>
 </div>
-<script>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
@@ -303,16 +329,7 @@
 
     function handleSubmit() {
         const email = document.getElementById('email-input').value;
-        if (!email || !email.includes('@')) {
-            document.getElementById('email-input').style.borderColor = '#E85A5A';
-            return;
-        }
-        // TODO: Replace with Formspree — fetch('https://formspree.io/f/YOUR_ID', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({email}) });
+        if (!email || !email.includes('@')) { document.getElementById('email-input').style.borderColor = '#E85A5A'; return; }
         document.getElementById('contact-form').style.display = 'none';
         document.getElementById('form-success').style.display = 'block';
-        window.location.href = 'mailto:hello@storecraft.ai?subject=Design Partner Application&body=Hi, I\'d like to become a StoreCraft design partner. My email is ' + email;
-    }
-    document.getElementById('email-input').addEventListener('keypress', function(e) { if (e.key === 'Enter') handleSubmit(); });
-</script>
-</body>
-</html>
+        window.location.href = 'mailto:hello@storecraft.ai?subject=Design Partner Application
